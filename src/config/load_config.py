@@ -20,6 +20,10 @@ def load_config() -> ConfigModel:
         },
         "raw_camera_shot_path": os.getenv("RAW_CAMERA_SHOT_PATH"),
         "bounded_camera_shot_path": os.getenv("BOUNDED_CAMERA_SHOT_PATH"),
+        "server": {
+            "auth_key": os.getenv("RESTAPI_AUTH_KEY"),
+            "url": os.getenv("SERVER_URL"),
+        },
     }
 
     # Validate config

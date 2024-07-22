@@ -11,6 +11,11 @@ class SchedulerSettings(BaseModel):
     last_hour_time: datetime.datetime  # like '19:00'
 
 
+class ServerConfig(BaseModel):
+    auth_key: str
+    url: str
+
+
 class ConfigModel(BaseModel):
     camera_index: int
 
@@ -22,6 +27,8 @@ class ConfigModel(BaseModel):
 
     raw_camera_shot_path: str  # like 'src/hash/camera_pictures/camera_image.png'
     bounded_camera_shot_path: str  # like 'src/hash/camera_pictures/bounded_image.png'
+
+    server: ServerConfig
 
     class Config:  # this is necessary to allow pydantic to work with data types from other libraries
         arbitrary_types_allowed = True

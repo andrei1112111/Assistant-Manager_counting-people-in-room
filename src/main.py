@@ -1,9 +1,13 @@
 import src.scheduler as scheduler
+
 from src.logger import logger
 from src.config import config
+from src.post_request import send_post
 
 import src.camera as camera
 import src.detect_peoples as detect_peoples
+
+import datetime
 
 
 def run_app():
@@ -17,9 +21,21 @@ def run_app():
             config.bounded_camera_shot_path
         )  # Get number of peoples from the Image
 
-        # send number to <--.-->
+        if peoples_inroom == 0:
+            logger.info(f"Room '{config.room_name}' is empty.")
+            return
+
+        send_post(
+            url=config.server.url,
+            data={
+                "auth_key": config.server.auth_key,
+                "room": config.room_name,
+                "count": peoples_inroom,
+                "date": datetime.datetime.now(tz=config.timezone).strftime('%m/%d/%Y, %H:%M:%S')
+            }
+        )
+
         logger.info(f"There are {peoples_inroom} people in the '{config.room_name}' room.")
-        #
 
     job()
 
