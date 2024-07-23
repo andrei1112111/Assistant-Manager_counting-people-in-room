@@ -25,8 +25,8 @@ class ConfigModel(BaseModel):
 
     scheduler_settings: SchedulerSettings
 
-    raw_camera_shot_path: str  # like 'src/hash/camera_pictures/camera_image.png'
-    bounded_camera_shot_path: str  # like 'src/hash/camera_pictures/bounded_image.png'
+    raw_camera_shot_path: str  # like 'src/tmp/camera_pictures/camera_image.png'
+    bounded_camera_shot_path: str  # like 'src/tmp/camera_pictures/bounded_image.png'
 
     server: ServerConfig
 

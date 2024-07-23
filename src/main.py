@@ -8,6 +8,7 @@ import src.camera as camera
 import src.detect_peoples as detect_peoples
 
 import datetime
+import base64
 
 
 def run_app():
@@ -25,13 +26,18 @@ def run_app():
             logger.info(f"Room '{config.room_name}' is empty.")
             return
 
+        with open(config.raw_camera_shot_path, "rb") as f:
+            im_bytes = f.read()
+        im_b64 = base64.b64encode(im_bytes).decode("utf8")
+
         send_post(
             url=config.server.url,
             data={
                 "auth_key": config.server.auth_key,
                 "room": config.room_name,
                 "count": peoples_inroom,
-                "date": datetime.datetime.now(tz=config.timezone).strftime('%m/%d/%Y, %H:%M:%S')
+                "date": datetime.datetime.now(tz=config.timezone).strftime('%m/%d/%Y, %H:%M:%S'),
+                "image": im_b64
             }
         )
 

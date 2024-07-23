@@ -7,9 +7,7 @@ scheduler = BlockingScheduler()
 
 def start_scheduler(func):
     """
-    Add cron job on every monday-friday days.
-
-    func run from schedule_start_time to schedule_end_time every interval
+    Add a cron job on every interval.minute from first_hour_time to last_hour_time in monday-friday days.
     """
     scheduler.add_job(
         func,
