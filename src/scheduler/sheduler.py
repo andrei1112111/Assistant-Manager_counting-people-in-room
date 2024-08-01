@@ -28,7 +28,3 @@ def start_scheduler(func):
     )
 
     scheduler.start()
-
-
-def stop_scheduler():
-    scheduler.shutdown()
