@@ -19,7 +19,6 @@ def load_config() -> ConfigModel:
             "last_hour_time": datetime.datetime.strptime(os.getenv("SCHEDULER_LAST_HOUR"), "%H"),
         },
         "raw_camera_shot_path": os.getenv("RAW_CAMERA_SHOT_PATH"),
-        "bounded_camera_shot_path": os.getenv("BOUNDED_CAMERA_SHOT_PATH"),
         "server": {
             "auth_key": os.getenv("RESTAPI_AUTH_KEY"),
             "url": os.getenv("SERVER_URL"),
@@ -28,5 +27,7 @@ def load_config() -> ConfigModel:
 
     # Validate config
     config_model = ConfigModel(**config_data)
+
+    del config_data
 
     return config_model  # config successfully loaded
