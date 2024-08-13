@@ -13,3 +13,9 @@
     "image": im_b64
 }
 ```
+
+## Развертывание:
+```shell
+sudo docker pull andrei1121212/sberlab_count_assistant:manifest
+```
+* установить переменные среды из .env.local.example
